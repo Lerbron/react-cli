@@ -5,8 +5,9 @@
 1. 安装nodejs 10.16.x或以上版本
 
 2. 安装yarn
+~~~bash
   npm install yarn -g
-
+~~~
 3. 安装react-cli
 
 	~~~bash
