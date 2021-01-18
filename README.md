@@ -25,13 +25,7 @@
 
 1. react-cli server, build, create。```react-cli```可以查看帮助
 
-2. ```react-cli server```启动本地server。默认端口3000.可使用-p 8000进行端口修改
-
-	~~~
-	react-cli server -p 8000
-	~~~
-
-3. ```fe create```创建新项目。根据提示输入项目名称及项目生产环境url前缀
+2. ```fe create```创建新项目。根据提示输入项目名称及项目生产环境url前缀
 
 	~~~
 	react-cli create
@@ -41,5 +35,16 @@
 	prompt: 作者信息: ...
 	~~~
 
+3.```yarn```进入创建的项目的目录，安装所需依赖
 
+
+4. ```react-cli server```启动本地server。默认端口3000.可使用-p 8000进行端口修改
+
+	~~~
+	react-cli server -p 8000
+	~~~
 	***安装完毕后可使用```react-cli server```启动本地server了，***
+
+5.```react-cli build```生产打包
+
+
