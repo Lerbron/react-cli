@@ -15,12 +15,12 @@ prompt.start();
 prompt.get({
   properties: {
     name: {
-      description: chalk.yellow('请输入目录名称'),
-      message: chalk.red('必须输入目录名称'),
+      description: chalk.yellow('Please input project name'),
+      message: chalk.red('project name required'),
       required: true
     },
     template: {
-      description: chalk.yellow('请选择项目模版 js/typescript'),
+      description: chalk.yellow('please input project template js or typescript'),
       required: false
     }
   }
@@ -33,20 +33,20 @@ prompt.get({
   let name= result.name
 
   if (!fs.existsSync(name)) {
-    console.log('正在创建项目...');
+    console.log('creating...');
     inquirer.prompt([{
         name: 'description',
-        message: '请输入项目描述'
+        message: 'please input project description'
       },
       {
         name: 'author',
-        message: '请输入作者名称'
+        message: 'please input author'
       }
     ]).then(answers => {
-      const spinner = ora('正在向下载模板...\n');
+      const spinner = ora('loading...\n');
       spinner.start();
       let url= 'https://github.com/Lerbron/react-cli-tmp.git'
-      if(result?.template && result?.template == 'typescript') {
+      if(result.template && result.template == 'typescript') {
         url= 'https://github.com/Lerbron/react-cli-tmp-ts.git'
       }
       download(`direct:${url}`, name, {
@@ -54,7 +54,7 @@ prompt.get({
       }, err => {
         if (err) {
           spinner.fail();
-          console.log(symbols.error, chalk.red('模板下载失败'))
+          console.log(symbols.error, chalk.red('load template fail'))
         } else {
           spinner.succeed();
           const filename = `${name}/package.json`;
@@ -73,15 +73,15 @@ prompt.get({
             fs.writeFileSync(filename, result);
             shell.cd(name);
             shell.rm('-rf', '.git');
-            console.log(symbols.success, chalk.green('项目初始化完成'));
+            console.log(symbols.success, chalk.green('init finished'));
           } else {
-            console.log(symbols.error, chalk.red('package不存在'))
+            console.log(symbols.error, chalk.red('package is not exist'))
           }
           process.exit()
         }
       })
     })
   } else {
-    console.log(symbols.error, chalk.red('项目已存在'));
+    console.log(symbols.error, chalk.red('project is exist'));
   }
 })
