@@ -11,6 +11,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const glob = require("glob-all");
+const CompressionPlugin = require('compression-webpack-plugin');
 
 
 const baseConfig = {
@@ -54,6 +55,11 @@ if (!helpers.production()) {
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css',
       ignoreOrder: false,
+    }),
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+      algorithm: 'gzip',
+      compressionOptions: { level: 5 },
     }),
     // new PurgeCSSPlugin({
     //   paths: glob.sync([
